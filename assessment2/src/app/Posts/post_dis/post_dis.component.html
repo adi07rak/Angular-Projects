@@ -1,0 +1,60 @@
+<div style="width:100%; height:auto;">
+    <div class="" style= "width:30%; float : left; padding:0 10px;height:auto;">
+      <div  style="width:100%; margin-top:5px;border: 2px solid black; padding:10px;" >
+        <form  #myform="ngForm">
+          <h1 >Create New</h1>
+          
+          <div class="form-group">
+            <label>Title:</label>
+            <input type="text" class="form-control" placeholder="Title" [(ngModel)]="post.p_title" name="p_title" required>
+          </div>
+          <div class="form-group">
+            <label>Content:</label>
+            <input type="text" class="form-control" placeholder="Content" [(ngModel)]="post.p_body" name="p_body" required>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn" (click)="sendPost(post)" [disabled]="!myform.valid">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="" style= "width:70%; float:left; padding-left:10px; border-left : 1px solid black">
+      <h1>Posts</h1>
+      <div class="panel" id="ex1" style="width:100%; padding:5px;">
+        <!-- <div class="panel-heading">User details</div> -->
+        <div class="panel-body">
+          <div class="" style = "border-radius: 7px; border: 2px solid #b7b3b3; margin-bottom:10px;" *ngFor="let pt of post_dis" >
+            <div class="input-group">
+              <div class="input-group-addon"><a [routerLink]= "['/post',pt._id]" class="glyphicon glyphicon-chevron-right"></a></div>
+              <label class="form-control"style="padding:10px;"><a class="glyphicon glyphicon-user"></a> {{pt.fname}}</label>
+              <div class="input-group-addon"><a (click)="del_post(pt._id)" class="glyphicon glyphicon-trash"></a></div>
+              
+              <!-- <div class="input-group-addon">
+                  <a   class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#adai" (click)="showedit(pt._id)"></a>
+                  
+              </div> -->
+              
+            </div>
+            <div class="container" >
+              <label class="">{{pt.p_title}}</label>
+              <div class="form-group" style="border: 0.5px solid gray" >
+                <h4 style="margin:10px;">{{pt.p_body}}</h4>
+              </div>
+            </div>
+            <div><app-like-com [nested]="{_id:pt._id,p_imp:pt.p_imp}" (LikeEvent)="ngOnInit($event)"></app-like-com></div>
+            <!-- <div >
+                <app-edit-post [nested1]="{_id:pt._id,p_title:pt.p_title,p_body:pt.p_body,ed: edit}" (EditEvent)="ngOnInit($event)"></app-edit-post>
+
+            </div> -->
+            <!-- {_id:pt._id,p_title:pt.p_title,p_body:pt.p_body} -->
+            <!-- class="modal fade" id="adai"  role="dialog" aria-labelledby="myModalLabel" -->
+            
+
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

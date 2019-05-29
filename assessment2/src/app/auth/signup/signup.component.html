@@ -1,0 +1,60 @@
+
+<div class="box" >
+  <form #myform="ngForm">
+    <div class="form-group">
+      <label>User Name</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="User Name"  [(ngModel)]="user.uname" name="uname" #unameVar="ngModel"required>
+      <div *ngIf="unameVar.invalid && unameVar.touched">
+          <div class="alert alert-danger">Please provide Username </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [(ngModel)]="user.password" name="password" #passwordVar="ngModel"required>
+      <div *ngIf="passwordVar.invalid && passwordVar.touched">
+          <div class="alert alert-danger">Please provide Password </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" class="form-control"  placeholder="First Name" [(ngModel)]="user.fname" name="faname" #fnameVar="ngModel" required>
+      <div *ngIf="fnameVar.invalid && fnameVar.touched">
+          <div class="alert alert-danger">Please provide First Name </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control"  placeholder="Last Name" [(ngModel)]="user.lname" name="lname" #lnameVar="ngModel" required>
+      <div *ngIf="lnameVar.invalid && lnameVar.touched">
+          <div class="alert alert-danger">Please provide Last Name </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="phone" name="phone" class="form-control" placeholder="xxx-xxx-xxxx"
+      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" [(ngModel)]="user.phone" name="phone" #phoneVar="ngModel" required>
+      <div *ngIf="phoneVar.invalid && phoneVar.touched">
+          <div class="alert alert-danger" *ngIf="phoneVar.errors.required">Please provide Phone Number </div>
+          <div class="alert alert-danger" *ngIf="phoneVar.errors.pattern">Must be xxx-xxx-xxxx </div>
+      </div>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="Gender" value="Male" [(ngModel)]="user.gen" checked required>Male </label><br>
+      <label>
+        <input type="radio" name="Gender" value="Female" [(ngModel)]="user.gen" required>Female </label><br>
+      <label>
+        <input type="radio" name="Gender" value="non" [(ngModel)]="user.gen" required>Other</label>
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn" (click)="saveUser(user)" [disabled]="myform.invalid">submit</button>
+    </div>
+    <div  *ngIf=fail>
+      <div class="alert alert-danger"> User Name Must be UNIQUE</div>
+    </div>
+  </form>
+
+</div>

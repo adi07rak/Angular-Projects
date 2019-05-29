@@ -1,0 +1,59 @@
+<div class="input-group" >
+  <div class="input-group-addon" [title]="nested.p_imp">
+      <a (click)="like(nested._id)" class="glyphicon glyphicon-thumbs-up"  ><span class="badge">{{nested.p_imp.length}}</span></a>
+      <!-- <a (click)="like(uname,pt._id)" class="glyphicon glyphicon-heart" style="color:red;" *ngIf="nlike"></a> -->
+  </div>
+  <div class="input-group-addon"><a  class="glyphicon glyphicon-tasks" (click)="show_comment(nested._id)" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" ></a></div>
+  <!-- <div class="input-group-addon"><a (click)="del_post(nested._id)" class="glyphicon glyphicon-trash"></a></div> -->
+  <div class="input-group-addon">
+      <a   class="glyphicon glyphicon-pencil" data-toggle="modal"  (click)="showedit(nested._id)"></a>
+  </div>
+</div>
+<div class="input-group" style="margin-bottom: 5px">
+  <input type="text" class="form-control" [(ngModel)]="com" name="com" placeholder="Comment" id="exampleInputAmount" >
+  <div class="input-group-addon"><a class="glyphicon glyphicon-send" (click)="comment(nested._id,com)"></a></div>
+</div>
+
+
+<div   style=" padding: 5px; background-color: #eeeeee" *ngIf="counter">
+  
+  <div *ngFor="let cm of comments" style="padding:0px 5px 5px 5px" class="input-group input-group-sm">
+      <span class="input-group-addon" id="sizing-addon3"><a class="glyphicon glyphicon-user" style="color:black"></a> {{cm.fname}}</span>
+      <label class="form-control"  aria-describedby="sizing-addon3">{{cm.c_body}}</label>
+  </div>
+</div>
+  
+  <div class="modal-dialog" role="document" *ngFor="let ed of edit" style="width:80%;">
+      <div class="modal-content">
+          <div class="modal-header">
+              <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+              <h4 class="modal-title" id="exampleModalLabel">Edit Post</h4>
+          </div>
+         
+          <div class="modal-body">
+              <div class="form-group">
+                  <label for="recipient-name" class="control-label">Title:</label>
+                  <input type="text" class="form-control" id="recipient-name" [(ngModel)]="ed.p_title"  name="p_title">
+              </div>
+              <div class="form-group">
+                  <label for="recipient-name" class="control-label">Content:</label>
+                  <input type="text" class="form-control" id="recipient-name" [(ngModel)]="ed.p_body"  name="p_body">
+              </div>
+              
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-default" (click)="close()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="edit_post(ed.p_title,ed.p_body,ed._id)">Save changes</button>
+          </div> 
+      </div>
+  </div>
+  
+
+<!-- </div> -->
+
+<div >
+    
+  </div>
+ 
+
+

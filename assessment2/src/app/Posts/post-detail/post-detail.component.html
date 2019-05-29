@@ -1,0 +1,26 @@
+
+<div class="box">
+    <div *ngFor="let pt of post" style = "border-radius: 7px; border: 2px solid #b7b3b3; margin-bottom:10px;" >
+        <div class="input-group">
+          <div class="input-group-addon"><a [routerLink]="['/post']" class="glyphicon glyphicon-chevron-left"></a></div>
+          <label class="form-control"style="padding:10px;"><a class="glyphicon glyphicon-user"></a> {{pt.fname}}</label>
+          <div class="input-group-addon"><a (click)="del_post(pt._id)" class="glyphicon glyphicon-trash"></a></div>
+
+          
+        </div>
+        <div class="container" style="width:100%" >
+          <label class="">{{pt.p_title}}</label>
+          <label class="">{{pt.p_imp}}</label>
+          <div class="form-group" style="border: 0.5px solid gray; width: 100%;" >
+            <h4 style="margin:10px;">{{pt.p_body}}</h4>
+          </div>
+        </div>
+        <div><app-like-com [nested]="{_id: pt._id, p_imp: pt.p_imp}" (LikeEvent)="ngOnInit($event)"></app-like-com></div>
+        <!--<div >
+          <app-edit-post [nested1]="{_id:this.pt._id,p_title:this.pt.p_title,p_body:this.pt.p_body}" (EditEvent)="ngOnInit($event)"></app-edit-post>
+    
+        </div> -->
+        
+        
+    </div>
+</div>

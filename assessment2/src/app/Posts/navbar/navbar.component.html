@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default" id="fix">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="" [routerLink]="['/home']">CONNECT</a>
+      </div>
+      
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li routerLinkActive="active"><a href="#" class="glyphicon glyphicon-home" [routerLink]="['/home']" ><span class="sr-only">(current)</span></a></li>
+          <li routerLinkActive="active"><a href="#" class="glyphicon glyphicon-list-alt" [routerLink]="['/post']" *ngIf="temp"></a></li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+          <li routerLinkActive="active"><a href="#" [routerLink]="['/login']" *ngIf="!temp" >LogIn</a></li>
+          <li routerLinkActive="active"><a href="#" [routerLink]="['/signup']" *ngIf="!temp" >SignUp</a></li>
+          <li class="dropdown"  *ngIf="temp">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="glyphicon glyphicon-chevron-down"></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"><label class="glyphicon glyphicon-user" [routerLink] = "['/home']"></label>{{uname}}</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a (click)="logout()">LogOut</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
